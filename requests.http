@@ -1,0 +1,158 @@
+# NeuroAPI — VS Code REST Client collection
+# Set these three, then run top to bottom.
+@base = http://localhost:4000/api/v1
+@writeKey = neuro_write_demo_9f2k7q
+@readKey = neuro_read_demo_3m8x1z
+
+### 1. Health
+GET {{base}}/health
+
+### 2. List courses (paginated)
+GET {{base}}/courses?page=1&limit=10
+
+### 3. Filter + search courses
+GET {{base}}/courses?level=beginner&q=rest&limit=5
+
+### 4. Invalid query (limit > 50) -> 400
+GET {{base}}/courses?limit=51
+
+### 5. Get one course (replace ID)
+GET {{base}}/courses/00000000-0000-4000-8000-000000000000
+
+### 6. Create course — no key -> 401
+POST {{base}}/courses
+Content-Type: application/json
+
+{
+  "title": "GraphQL in Practice",
+  "level": "intermediate",
+  "seats": 40,
+  "startDate": "2026-12-01"
+}
+
+### 7. Create course — read-only key -> 403
+POST {{base}}/courses
+Content-Type: application/json
+X-API-Key: {{readKey}}
+
+{
+  "title": "GraphQL in Practice",
+  "level": "intermediate",
+  "seats": 40,
+  "startDate": "2026-12-01"
+}
+
+### 8. Create course — write key -> 201 + Location
+POST {{base}}/courses
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{
+  "title": "GraphQL in Practice",
+  "description": "Schemas, resolvers and federation for product APIs.",
+  "level": "intermediate",
+  "seats": 40,
+  "startDate": "2026-12-01"
+}
+
+### 9. Create course — past startDate -> 422
+POST {{base}}/courses
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{
+  "title": "History Class",
+  "level": "beginner",
+  "seats": 10,
+  "startDate": "2020-01-01"
+}
+
+### 10. Create course — bad payload, all errors at once -> 400
+POST {{base}}/courses
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{
+  "title": "x",
+  "level": "expert",
+  "seats": 0,
+  "startDate": "yesterday",
+  "hacker": true
+}
+
+### 11. List learners
+GET {{base}}/learners?q=areeba&limit=5
+
+### 12. Create learner — email normalized to lowercase -> 201
+POST {{base}}/learners
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{
+  "name": "Zara Iqbal",
+  "email": "ZARA.IQBAL@Example.COM"
+}
+
+### 13. Create learner — duplicate email -> 409
+POST {{base}}/learners
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{
+  "name": "Copy Cat",
+  "email": "areeba.shah@example.com"
+}
+
+### 14. Create learner — idempotent retry (send twice, same 201)
+POST {{base}}/learners
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+Idempotency-Key: demo-key-001
+
+{
+  "name": "Idem Potent",
+  "email": "idem.potent@example.com"
+}
+
+### 15. Demo statuses (Status Lab backend)
+GET {{base}}/demo/status/200
+
+### 16.
+GET {{base}}/demo/status/201
+
+### 17.
+GET {{base}}/demo/status/204
+
+### 18.
+GET {{base}}/demo/status/400
+
+### 19.
+GET {{base}}/demo/status/401
+
+### 20.
+GET {{base}}/demo/status/403
+
+### 21.
+GET {{base}}/demo/status/404
+
+### 22.
+GET {{base}}/demo/status/429
+
+### 23.
+GET {{base}}/demo/status/500
+
+### 24. OpenAPI document
+GET http://localhost:4000/openapi.json
+
+### 25. Problem page (human-readable)
+GET http://localhost:4000/problems/rate-limited
+
+### 26. Wrong method on a known path -> 405 + Allow
+PUT {{base}}/courses
+Content-Type: application/json
+X-API-Key: {{writeKey}}
+
+{ "title": "Nope" }
+
+### 27. Unknown route -> 404 problem+json
+GET {{base}}/definitely-not-here
