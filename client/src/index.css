@@ -91,8 +91,8 @@
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02) 45%, rgba(0, 0, 0, 0.14));
-  -webkit-backdrop-filter: blur(16px) saturate(170%);
-  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(5px) saturate(170%);
+  backdrop-filter: blur(5px) saturate(170%);
   box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.12),
     inset -1px -1px 3px rgba(0, 0, 0, 0.28),
@@ -115,7 +115,7 @@
 }
 /* elevation 3: hero surfaces, drawers */
 .glass-3 {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04) 40%, rgba(0, 0, 0, 0.2));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01) 40%, rgba(0, 0, 0, 0.1));
   box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.18),
     inset -2px -2px 6px rgba(0, 0, 0, 0.35),
@@ -138,8 +138,8 @@
 
 /* Chromium-only liquid enhancement; everything else keeps plain .glass */
 .has-liquid .liquid {
-  -webkit-backdrop-filter: url(#neuro-liquid) blur(16px) saturate(170%);
-  backdrop-filter: url(#neuro-liquid) blur(16px) saturate(170%);
+  -webkit-backdrop-filter: url(#neuro-liquid) blur(5px) saturate(170%);
+  backdrop-filter: url(#neuro-liquid) blur(5px) saturate(170%);
 }
 
 @media (prefers-color-scheme: light) {

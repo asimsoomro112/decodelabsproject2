@@ -105,7 +105,7 @@ export default function Nav() {
           ref={pillRef}
           aria-label="Primary"
           className={`glass glass-pill glass-1 liquid specular flex items-center gap-1 transition-all duration-300 ${
-            condensed ? 'max-w-[560px] px-2 py-1.5' : 'max-w-[720px] px-3 py-2.5'
+            condensed ? 'max-w-[660px] px-2 py-1.5' : 'max-w-[720px] px-3 py-2.5'
           }`}
         >
           <NavLink to="/" viewTransition className="mr-1 flex items-center gap-2 rounded-full px-2 py-1" aria-label="NeuroAPI home">

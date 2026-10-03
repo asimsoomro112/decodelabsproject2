@@ -249,7 +249,7 @@ export default function Pulse() {
       </GlassCard>
 
       {/* Concepts */}
-      <div className="reveal mt-6">
+      <div className="reveal mt-6 mb-12">
         <h2 className="display mb-3 text-xl font-semibold">Ideas, made visible</h2>
         <div className="flex flex-wrap gap-2">
           {CONCEPTS.map((c) => (
@@ -262,6 +262,52 @@ export default function Pulse() {
               {c}
             </Link>
           ))}
+        </div>
+      </div>
+
+      {/* New Features Section */}
+      <div className="reveal mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <GlassCard elevation={2} className="p-8">
+          <Database size={24} style={{ color: 'var(--neon)' }} className="mb-4" aria-hidden="true" />
+          <h3 className="display text-xl font-bold mb-2">Persistent Data</h3>
+          <p className="text-[var(--muted)] text-sm leading-relaxed">
+            NeuroAPI stores user actions, session progress, and architectural configurations securely. Every endpoint ensures atomicity and consistency, keeping your frontend firmly rooted in reality.
+          </p>
+        </GlassCard>
+        <GlassCard elevation={2} className="p-8">
+          <Cpu size={24} style={{ color: 'var(--pulse)' }} className="mb-4" aria-hidden="true" />
+          <h3 className="display text-xl font-bold mb-2">Gatekeeper Auth</h3>
+          <p className="text-[var(--muted)] text-sm leading-relaxed">
+            Zero-trust model implemented across the entire routing layer. Rate limiting (HTTP 429), payload validation via Zod, and JWT-based identity checks keep the infrastructure rock solid.
+          </p>
+        </GlassCard>
+      </div>
+
+      {/* System Architecture Section */}
+      <div className="reveal mt-8 mb-8 p-8 md:p-12 glass glass-2 liquid">
+        <h2 className="display text-2xl font-bold mb-4">System Architecture</h2>
+        <p className="text-[var(--muted)] mb-6 max-w-3xl">
+          The nervous system relies on a clean separation of concerns. The client sends lightweight REST payloads, which are intercepted by middleware, scrubbed for anomalies, and passed into our core business logic nodes.
+        </p>
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 glass glass-1 p-6 text-center rounded-2xl border border-white/5">
+            <span className="block text-[var(--neon)] font-mono text-sm mb-2">01</span>
+            <span className="font-semibold">Vite + React UI</span>
+          </div>
+          <div className="hidden md:flex items-center text-[var(--muted)]">
+            <ArrowRight size={20} />
+          </div>
+          <div className="flex-1 glass glass-1 p-6 text-center rounded-2xl border border-white/5">
+            <span className="block text-[var(--pulse)] font-mono text-sm mb-2">02</span>
+            <span className="font-semibold">Express 5 REST</span>
+          </div>
+          <div className="hidden md:flex items-center text-[var(--muted)]">
+            <ArrowRight size={20} />
+          </div>
+          <div className="flex-1 glass glass-1 p-6 text-center rounded-2xl border border-white/5">
+            <span className="block text-[var(--mint)] font-mono text-sm mb-2">03</span>
+            <span className="font-semibold">Postgres + Prisma</span>
+          </div>
         </div>
       </div>
     </div>
