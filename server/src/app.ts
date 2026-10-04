@@ -20,6 +20,7 @@ import { learnersRouter } from './routes/learners.ts';
 import { demoRouter } from './routes/demo.ts';
 import { problemsRouter } from './routes/problems.ts';
 import { openApiJsonHandler } from './openapi/document.ts';
+import { seed } from './domain/seed.ts';
 
 export function createApp(): express.Express {
   const app = express();
@@ -99,4 +100,16 @@ export function createApp(): express.Express {
   app.use(notFound);
   app.use(errorHandler);
   return app;
+}
+
+// Vercel serverless handler. Vercel's Express runtime serves the default export of the
+// module that calls express() — this one. Built lazily on the first request (cold start)
+// so importing createApp in tests/index.ts has no side effects.
+let serverlessApp: express.Express | undefined;
+export default function vercelHandler(req: express.Request, res: express.Response): void {
+  if (!serverlessApp) {
+    seed(); // in-memory demo data, mirrors src/index.ts
+    serverlessApp = createApp();
+  }
+  serverlessApp(req, res);
 }
