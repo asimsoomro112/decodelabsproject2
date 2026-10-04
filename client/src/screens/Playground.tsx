@@ -133,7 +133,7 @@ export default function Playground() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Builder */}
-        <GlassCard elevation={2} className="p-6">
+        <GlassCard elevation={2} className="p-6 min-w-0">
           <div className="flex gap-3">
             <Field label="Method" htmlFor="pg-method">
               <select id="pg-method" className="field-input" value={method} onChange={(e) => setMethod(e.target.value as 'GET' | 'POST')}>
@@ -275,7 +275,7 @@ export default function Playground() {
         </GlassCard>
 
         {/* Response */}
-        <div aria-live="polite" aria-label="Response">
+        <div aria-live="polite" aria-label="Response" className="min-w-0">
           {!result ? (
             <GlassCard elevation={1} className="grid h-full min-h-72 place-items-center p-8 text-center">
               <div>

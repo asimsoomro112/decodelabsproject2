@@ -30,7 +30,7 @@ function MethodBadge({ method }: { method: 'GET' | 'POST' }) {
 function EndpointCard({ ep }: { ep: EndpointDoc }) {
   const navigate = useNavigate();
   return (
-    <GlassCard elevation={2} className="reveal p-6">
+    <GlassCard elevation={2} className="reveal p-6 min-w-0">
       <div className="flex flex-wrap items-center gap-3">
         <MethodBadge method={ep.method} />
         <code className="font-mono text-sm text-[var(--ink)]">{ep.path}</code>
