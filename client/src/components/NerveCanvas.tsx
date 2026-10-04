@@ -109,9 +109,11 @@ export default function NerveCanvas() {
       img.onerror = () => {
         media.mode = 'none';
       };
-      img.src = '/media/poster.jpg';
+      // Uncomment to use an image fallback:
+      // img.src = '/media/poster.jpg';
     });
-    video.src = '/media/bg.mp4';
+    // Uncomment to use a video background:
+    // video.src = '/media/bg.mp4';
 
     function layout() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
